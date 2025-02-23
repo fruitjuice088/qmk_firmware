@@ -1,0 +1,13 @@
+CB(hl2del, KC_DEL, KC_H, KC_L)
+CB(lp2bs, KC_BSPC, KC_L, KC_P)
+CB(rn2k, KC_K, CTL_T(KC_R), LT(SFT_L, KC_N))
+CB(rn2up, KC_UP, JP_SLSH, JP_AT)
+CB(rn2sup, S(KC_UP), S(JP_SLSH), S(JP_AT))
+CB(yo2tab, KC_TAB, KC_Y, C_S_T(KC_O))
+CB(tr2esc, KC_ESC, ALT_T(KC_T), CTL_T(KC_R))
+CB(yu2uc, S(JP_BSLS), KC_Y, KC_U)
+
+CB(koga2del, KC_DEL, SG_I, SG_O)
+CB(gahi2bs, KC_BSPC, SG_O, SG_P)
+CB(nino2tab, KC_TAB, SG_W, SG_O)
+CB(ui2esc, ESC_INT5, SG_J, SG_K)  // R人指し指中指でEsc

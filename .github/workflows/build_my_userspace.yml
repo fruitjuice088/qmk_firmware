@@ -15,7 +15,7 @@ env:
 jobs:
 
   build_targets:
-    name: "Compile ${{ env.KEYMAP }}"
+    name: "Compile keymaps"
     runs-on: ubuntu-latest
     container: ghcr.io/qmk/qmk_cli
     continue-on-error: true

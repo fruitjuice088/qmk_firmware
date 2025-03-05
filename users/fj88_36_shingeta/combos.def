@@ -9,5 +9,5 @@ CB(yu2uc, S(JP_BSLS), KC_Y, KC_U)
 
 CB(koga2del, KC_DEL, SG_I, SG_O)
 CB(gahi2bs, KC_BSPC, SG_O, SG_P)
-CB(nino2tab, KC_TAB, SG_W, SG_O)
+CB(nino2tab, KC_TAB, SG_W, SG_A)
 CB(ui2esc, ESC_INT5, SG_J, SG_K)  // R人指し指中指でEsc

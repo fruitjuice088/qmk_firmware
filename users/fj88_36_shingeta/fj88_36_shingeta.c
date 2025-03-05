@@ -60,11 +60,11 @@
 
 // HENK_ENT: Enterキーを押している間、かなとINT4が有効になる
 static uint16_t lang1_ent_timer;
-static bool kana_key_pressed = false;
-static bool enter_key_held = false;
+static bool     kana_key_pressed = false;
+static bool     enter_key_held   = false;
 
-static uint8_t sg_chrcount = 0;
-static uint64_t keycomb = (uint64_t)0;
+static uint8_t  sg_chrcount = 0;
+static uint64_t keycomb     = (uint64_t)0;
 static uint16_t ninputs[SGBUFFER];
 
 #define SG0 (SG_Q)
@@ -387,15 +387,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [SGT_L] = LAYOUT_fj88_36(
-        SG_Q      , SG_W     , SG_E       , SG_R          , SG_T             , SG_Y      , SG_H        , SG_I        , SG_O        , SG_P         ,
+        SG_Q      , SG_W     , SG_E       , SG_R          , SG_T             , SG_Y      , SG_U        , SG_I        , SG_O        , SG_P         ,
         SG_A      , SG_S     , SG_D       , SG_F          , SG_G             , SG_H      , SG_J        , SG_K        , SG_L        , SG_SEMI      ,
         SG_Z      , SG_X     , SG_C       , SG_V          , SG_B             , SG_N      , SG_M        , SG_COMMA    , SG_DOT      , SG_SLASH     ,
                              SFT_T(KC_TAB), GTEX_BS       , SFT_T(KC_SPC)    , XXXXXXX   , KC_ENTER    , GUI_T(KC_ESC)
     ),
 
     [SGX_L] = LAYOUT_fj88_36(
-        KC_ESC    , SG_1     , SG_2       , SG_3         , XXXXXXX           , KC_UP     , _______     , _______     , _______     , SG_AT        ,
-        _______   , SG_4     , SG_5       , SG_6         , XXXXXXX           , JP_SCLN   , _______     , _______     , _______     , JP_LBRC      ,
+        KC_ESC    , SG_1     , SG_2       , SG_3         , KC_LEFT           , KC_UP     , _______     , _______     , _______     , SG_AT        ,
+        _______   , SG_4     , SG_5       , SG_6         , KC_RIGHT          , JP_SCLN   , _______     , _______     , _______     , JP_LBRC      ,
         _______   , SG_7     , SG_8       , SG_9         , SG_0              , KC_DOWN   , _______     , _______     , _______     , SFT_T(JP_RBRC),
                                _______    , _______      , _______           , XXXXXXX   , KC_TAB      , _______
     )

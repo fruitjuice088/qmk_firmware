@@ -67,4 +67,5 @@ typedef enum shingeta_keycodes {
 
     HENK_ENT,
     ESC_INT5,
+    EXIT_MACRO,
 } SGKEYS;

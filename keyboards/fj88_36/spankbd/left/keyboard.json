@@ -23,6 +23,7 @@
     "split": {
         "enabled": true,
         "transport": {
+            "protocol": "serial",
             "sync": {
                 "matrix_state": true
             }

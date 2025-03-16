@@ -146,7 +146,7 @@ const PROGMEM shingeta_keymap sgmap[] = {
     {.key = B_D | B_I, .kana = "yo"},
     {.key = B_D | B_O, .kana = "mi"},
     {.key = B_D | B_P, .kana = "we"},
-    {.key = B_D | B_AT, .kana = "uxo"},
+    {.key = B_5 | B_AT, .kana = "uxo"},
 
     {.key = B_K | B_A, .kana = "ho"},
     {.key = B_K | B_S, .kana = "ji"},
@@ -208,7 +208,7 @@ const PROGMEM shingeta_keymap sgmap[] = {
     {.key = B_S | B_M, .kana = "da"},
     {.key = B_S | B_COMMA, .kana = "pi"},
     {.key = B_S | B_DOT, .kana = "po"},
-    {.key = B_S | B_SLASH, .kana = "tixe"},
+    {.key = B_S | B_SLASH, .kana = "che"},
 
     {.key = B_L | B_1, .kana = "xya"},
     {.key = B_L | B_2, .kana = "mya"},
@@ -355,49 +355,49 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_Q       , KC_Y     , KC_U        , KC_COMM     , KC_DOT           , KC_K      , KC_W        , KC_H        , KC_L        , KC_P         ,
         C_S_T(KC_O), SFTD_I   , CTL_T(KC_E) , ALT_T(KC_A) , KC_MINS          , KC_F      , ALT_T(KC_T) , CTL_T(KC_R) , SFTD_N      , C_S_T(KC_S)  ,
         MOUS_Z     , KC_X     , FUNC_C      , KC_V        , KC_SCLN          , KC_J      , KC_D        , FUNC_G      , KC_M        , MOUS_B       ,
-                                ALT_T(KC_TAB),SYM_BS      , SFT_T(KC_SPC)    , HENK_ENT  , SYM_TB      , GUI_T(KC_ESC)
+                                              SYM_BS      , SFT_T(KC_SPC)    , HENK_ENT  , GUI_T(KC_TAB)
     ),
 
     [SYM_L] = LAYOUT_fj88_36(
-        _______    , KC_1     , KC_2        , KC_3        , JP_CIRC          , KC_UP     , KC_PGUP     , KC_LEFT     , KC_RGHT     , JP_YEN       ,
+        KC_ESC     , KC_1     , KC_2        , KC_3        , JP_CIRC          , KC_UP     , KC_PGUP     , KC_LEFT     , KC_RGHT     , JP_YEN       ,
         _______    , SFTD_4   , CTL_T(KC_5) , ALT_T(KC_6) , JP_BSLS          , JP_SCLN   , JP_COLN     , JP_SLSH     , JP_AT       ,C_S_T(JP_LBRC),
-        _______    , KC_7     , FUNC_8      , KC_9        , KC_0             , KC_DOWN   , KC_PGDN     , KC_HOME     , KC_END      , JP_RBRC      ,
-                                KC_LALT     , SYM_DL      , _______          , _______   , _______     , _______
+        KC_DEL     , KC_7     , FUNC_8      , KC_9        , KC_0             , KC_DOWN   , KC_PGDN     , KC_HOME     , KC_END      , JP_RBRC      ,
+                                              XXXXXXX     , _______          , SFT_T(KC_SPC), KC_ESC
     ),
 
     [SFT_L] = LAYOUT_fj88_36(
         _______    , JP_EXLM  , JP_DQUO    , JP_HASH      , S(JP_CIRC)       , S(KC_UP)  , S(KC_PGUP)  , S(KC_LEFT)  , S(KC_RGHT)  , S(JP_YEN)    ,
         _______    , JP_DLR   , JP_PERC    , JP_AMPR      , S(JP_BSLS)       , S(JP_SCLN), S(JP_COLN)  , S(JP_SLSH)  , S(JP_AT)    , S(JP_LBRC)   ,
         _______    , JP_QUOT  , JP_LPRN    , JP_RPRN      , _______          , S(KC_DOWN), S(KC_PGDN)  , S(KC_HOME)  , S(KC_END)   , S(JP_RBRC)   ,
-                                _______    , _______      , _______          , _______   , _______     , _______
+                                             _______      , _______          , _______   , _______
     ),
 
     [FNC_L] = LAYOUT_fj88_36(
         KC_F1      , KC_F2    , KC_F3      , KC_F4        , KC_F5            , KC_VOLU   , XXXXXXX     , XXXXXXX     , XXXXXXX     , KC_BRIU      ,
         KC_F6    ,SFT_T(KC_F7),CTL_T(KC_F8), ALT_T(KC_F9) , KC_F10           , KC_VOLD   , KC_RALT     , KC_RCTL     , KC_RSFT     , KC_BRID      ,
         KC_F11     , KC_F12   , KC_INT5    , KC_APP       , C(KC_INS)        , S(KC_INS) , XXXXXXX     , KC_INT4     , XXXXXXX     , XXXXXXX      ,
-                                _______    , _______      , _______          , _______   , _______     , _______
+                                             _______      , _______          , _______   , _______
     ),
 
     [MUS_L] = LAYOUT_fj88_36(
         QK_BOOT    , XXXXXXX  , XXXXXXX    , XXXXXXX      , XXXXXXX          , KC_WH_U   ,LALT(KC_LEFT), KC_MS_U     ,LALT(KC_RGHT), QK_BOOT      ,
         XXXXXXX    , KC_LSFT  , KC_LCTL    , KC_LALT      , XXXXXXX          , KC_WH_D   , KC_MS_L     , KC_MS_D     , KC_MS_R     , XXXXXXX      ,
-        XXXXXXX    , XXXXXXX  , KC_F22     , KC_F24       , KC_F23           , KC_WH_L   , KC_F24      , XXXXXXX     , KC_WH_R     , XXXXXXX      ,
-                                KC_LALT    , KC_ESC       , KC_LSFT          , KC_MS_BTN1, KC_MS_BTN3  , KC_MS_BTN2
+        KC_ESC     , XXXXXXX  , KC_F22     , KC_F24       , KC_F23           , KC_WH_L   , KC_F24      , XXXXXXX     , KC_WH_R     , XXXXXXX      ,
+                                             KC_MS_BTN3 , KC_LSFT            , KC_MS_BTN1  , KC_MS_BTN2
     ),
 
     [SGT_L] = LAYOUT_fj88_36(
         SG_Q      , SG_W     , SG_E       , SG_R          , SG_T             , SG_Y      , SG_U        , SG_I        , SG_O        , SG_P         ,
         SG_A      , SG_S     , SG_D       , SG_F          , SG_G             , SG_H      , SG_J        , SG_K        , SG_L        , SG_SEMI      ,
         SG_Z      , SG_X     , SG_C       , SG_V          , SG_B             , SG_N      , SG_M        , SG_COMMA    , SG_DOT      , SG_SLASH     ,
-                             SFT_T(KC_TAB), GTEX_BS       , SFT_T(KC_SPC)    , XXXXXXX   , KC_ENTER    , GUI_T(KC_ESC)
+                                            GTEX_BS    , SFT_T(KC_SPC)       , XXXXXXX   , KC_ESC
     ),
 
     [SGX_L] = LAYOUT_fj88_36(
         KC_ESC    , SG_1     , SG_2       , SG_3         , KC_LEFT           , KC_UP     , _______     , _______     , _______     , SG_AT        ,
-        _______   , SG_4     , SG_5       , SG_6         , KC_RIGHT          , JP_SCLN   , _______     , _______     , _______     , JP_LBRC      ,
-        _______   , SG_7     , SG_8       , SG_9         , SG_0              , KC_DOWN   , _______     , _______     , _______     , SFT_T(JP_RBRC),
-                               _______    , _______      , _______           , XXXXXXX   , KC_TAB      , _______
+        KC_TAB    , SG_4     , SG_5       , SG_6         , KC_RIGHT          , JP_SCLN   , _______     , _______     , _______     , JP_LBRC      ,
+        S(KC_TAB) , SG_7     , SG_8       , SG_9         , SG_0              , KC_DOWN   , _______     , _______     , _______     , SFT_T(JP_RBRC),
+                                            XXXXXXX      , S(KC_SPC)         , XXXXXXX   , KC_ENTER
     )
 };
 // clang-format on
@@ -450,8 +450,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     shingeta_clear();
                     kana_key_pressed = true;
                 }
-                ninputs[sg_chrcount] = keycode;
-                sg_chrcount++;
+                ninputs[sg_chrcount++] = keycode;
                 keycomb |= sg_key[keycode - SG0];
                 // 2文字あれば処理
                 if (sg_chrcount >= 2) {
@@ -468,8 +467,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
 
         case ESC_INT5:
-            tap_code(KC_INT5);
-            tap_code_delay(KC_ESC, 10);
+            if (!record->event.pressed) {
+                tap_code(KC_INT5);
+                tap_code_delay(KC_ESC, 10);
+            }
+            break;
+
+        case EXIT_MACRO:
+            if (!record->event.pressed) {
+                send_string("exit");
+            }
             break;
     }
 

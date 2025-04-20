@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 env:
-  KEYMAP: fj88_36_shingeta
+  KEYMAP: fj88_30
 
 jobs:
 

@@ -1,0 +1,19 @@
+CB(q       , KC_Q       , KC_L       , KC_U)
+CB(p       , KC_P       , KC_R       , KC_Y)
+
+CB(tab     , KC_TAB     , SFT_T(KC_I), CTL_T(KC_A))
+CB(tab_j   , KC_TAB     , KC_I       , KC_A)
+
+CB(del     , KC_DEL     ,CTL_T(KC_A) , ALT_T(KC_O))
+CB(del_j   , KC_DEL     ,KC_A        , KC_O)
+
+CB(plus    , JP_PLUS    , JP_COLN    , JP_TILD)
+CB(mins    , JP_MINS    , JP_TILD    , JP_UNDS)
+CB(times   , JP_ASTR    , JP_UNDS    , JP_SLSH)
+
+CB(enter   , KC_ENTER   , KC_T       , KC_S)
+CB(int5_esc, ESC_INT5   , ALT_T(KC_T), CTL_T(KC_N))
+CB(esc_j   , KC_ESC     , KC_T       , KC_N)
+CB(exit    , EXIT_MACRO , C_S_T(KC_E), KC_X)
+CB(under   , JP_UNDS    , L_FNC(M)   , KC_J)
+CB(under_p , JP_UNDS    , JP_HASH    , KC_END)

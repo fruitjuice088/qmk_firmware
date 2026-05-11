@@ -2,9 +2,6 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 #pragma once
 
-#define L_SYM(k) LT(SYM_L, KC_ ## k)
-#define L_SFT(k) LT(SFT_L, KC_ ## k)
-#define L_FNC(k) LT(FNC_L, KC_ ## k)
 #define L_MUS(k) LT(MUS_L, KC_ ## k)
 
 #define CB(name, action, ...) C_##name,
@@ -24,4 +21,3 @@ combo_t key_combos[COMBO_LENGTH] = {
 #include "combos.def"
 #undef CB
 };
-

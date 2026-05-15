@@ -35,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //                  BS/C  ___        PRS   DEL
     [PAD_L] = LAYOUT_fj88_30(
                           KC_1,             KC_2,            KC_3,           JP_DQUO,           JP_GRV,           JP_LABK,          JP_EQL,          JP_RABK,
-        KC_0,             LSFT_T(KC_4),    LCTL_T(KC_5),     LALT_T(KC_6),   LGUI_T(JP_QUOT),   KC_LEFT,          KC_DOWN,          KC_UP,           KC_RGHT,         JP_COLN,
+        KC_0,             LSFT_T(KC_4),    LCTL_T(KC_5),     LALT_T(KC_6),   CK_QUOT_GUI,   KC_LEFT,          KC_DOWN,          KC_UP,           KC_RGHT,         JP_COLN,
         JP_PERC,          KC_7,            KC_8,             KC_9,                                                KC_HOME,          KC_END,          JP_LCBR,         JP_RCBR,
                                            LCTL_T(KC_BSPC),  _______,                           XXXXXXX,          KC_DEL
     ),
@@ -78,6 +78,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 // ─────────────────────────────────────────────────────────────────
 static uint16_t muhn_timer = 0;
 static uint16_t henk_timer = 0;
+static uint16_t quot_gui_timer = 0;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -123,6 +124,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case CK_EXIT:
             if (record->event.pressed) {
                 SEND_STRING("exit");
+            }
+            return false;
+
+        // hold: LGUI  /  tap: JP_QUOT (S(KC_7))
+        case CK_QUOT_GUI:
+            if (record->event.pressed) {
+                quot_gui_timer = timer_read();
+                register_code(KC_LGUI);
+            } else {
+                unregister_code(KC_LGUI);
+                if (timer_elapsed(quot_gui_timer) < TAPPING_TERM) {
+                    tap_code16(JP_QUOT);
+                }
             }
             return false;
 

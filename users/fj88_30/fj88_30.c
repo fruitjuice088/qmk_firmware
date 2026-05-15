@@ -10,10 +10,10 @@
 // ─────────────────────────────────────────────────────────────────
 //
 // key-positions:
-//          |  0  |  1  |  2  |  3  |    |  4  |  5  |  6  |  7  |
+//       |  0  |  1  |  2  |  3  |    |  4  |  5  |  6  |  7  |
 // |  8  |  9  | 10  | 11  | 12  |    | 13  | 14  | 15  | 16  | 17  |
-// | 18  | 19  | 20  | 21  |                  | 22  | 23  | 24  | 25  |
-//                          | 26  | 27  |    | 28  | 29  |
+// | 18  | 19  | 20  | 21  |                | 22  | 23  | 24  | 25  |
+//                         | 26  | 27  |    | 28  | 29  |
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -23,10 +23,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Z/M  X/G   C     V/A              D/A   M     J/G   B/M
     //            muh/C spc/S      hen/P Tab/Hy
     [BAS_L] = LAYOUT_fj88_30(
-        KC_L,             KC_U,             KC_F,             KC_DOT,
-                                                                               KC_G,             KC_W,             KC_R,             KC_Y,
+                          KC_L,             KC_U,             KC_F,            KC_DOT,           KC_G,             KC_W,             KC_R,            KC_Y,
         KC_E,             KC_I,             KC_A,             KC_O,            JP_MINS,          KC_K,             KC_T,             KC_N,            KC_S,             KC_H,
-        LT(MUS_L, KC_Z),  LGUI_T(KC_X),    KC_C,             LALT_T(KC_V),                      RALT_T(KC_D),     KC_M,             RGUI_T(KC_J),    LT(MUS_L, KC_B),
+        LT(MUS_L, KC_Z),  LGUI_T(KC_X),     KC_C,             LALT_T(KC_V),                                        RALT_T(KC_D),     KC_M,            RGUI_T(KC_J),    LT(MUS_L, KC_B),
                                             CK_MUHN_CTL,      LSFT_T(KC_SPC),                    CK_HENK_PAD,      MT(ZMK_HYPR, KC_TAB)
     ),
 
@@ -35,35 +34,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // %    7     8     9                      HOME  END   {     }
     //                  BS/C  ___        PRS   DEL
     [PAD_L] = LAYOUT_fj88_30(
-        KC_1,             KC_2,             KC_3,             JP_DQUO,
-                                                                               JP_GRV,           JP_LABK,          JP_EQL,           JP_RABK,
-        KC_0,             LSFT_T(KC_4),    LCTL_T(KC_5),    LALT_T(KC_6),    LGUI_T(JP_QUOT),  KC_LEFT,          KC_DOWN,          KC_UP,           KC_RGHT,          JP_COLN,
-        JP_PERC,          KC_7,             KC_8,             KC_9,                              KC_HOME,          KC_END,           JP_LCBR,         JP_RCBR,
-                                            LCTL_T(KC_BSPC),  _______,                           XXXXXXX,          KC_DEL
+                          KC_1,             KC_2,            KC_3,           JP_DQUO,           JP_GRV,           JP_LABK,          JP_EQL,          JP_RABK,
+        KC_0,             LSFT_T(KC_4),    LCTL_T(KC_5),     LALT_T(KC_6),   LGUI_T(JP_QUOT),   KC_LEFT,          KC_DOWN,          KC_UP,           KC_RGHT,         JP_COLN,
+        JP_PERC,          KC_7,            KC_8,             KC_9,                                                KC_HOME,          KC_END,          JP_LCBR,         JP_RCBR,
+                                           LCTL_T(KC_BSPC),  _______,                           XXXXXXX,          KC_DEL
     ),
 
     //      ←S    →S    V-    V+         ↑S    MB4   ↑M    MB5
     // B-   Sft   Ctl   Alt   Gui        ↓S    ←M    ↓M    →M    B+
-    // Opt  F18   F20   F19              F18   F20   F19   Opt
+    // O/E  F18   F20   F19              F18   F20   F19   O/E
     //            MB3   Sft        MB1   MB2
     [MUS_L] = LAYOUT_fj88_30(
-        KC_WH_L,          KC_WH_R,         KC_VOLD,          KC_VOLU,
-                                                                               KC_WH_U,          KC_MS_BTN4,       KC_MS_UP,         KC_MS_BTN5,
-        KC_BRID,          KC_LSFT,         KC_LCTL,          KC_LALT,         KC_LGUI,          KC_WH_D,          KC_MS_LEFT,       KC_MS_DOWN,      KC_MS_RIGHT,      KC_BRIU,
-        MO(OPT_L),        KC_F18,          KC_F20,           KC_F19,                            KC_F18,           KC_F20,           KC_F19,          MO(OPT_L),
-                                            KC_MS_BTN3,       KC_LSFT,                           KC_MS_BTN1,       KC_MS_BTN2
+                          KC_WH_L,          KC_WH_R,         KC_VOLD,         KC_VOLU,           KC_WH_U,          KC_MS_BTN4,       KC_MS_UP,        KC_MS_BTN5,
+        KC_BRID,          KC_LSFT,         KC_LCTL,          KC_LALT,         KC_LGUI,           KC_WH_D,          KC_MS_LEFT,       KC_MS_DOWN,      KC_MS_RIGHT,     KC_BRIU,
+        LT(OPT_L, KC_ESC), KC_F18,          KC_F20,           KC_F19,                                               KC_F18,           KC_F20,          KC_F19,          LT(OPT_L, KC_ESC),
+                                           KC_MS_BTN3,       KC_LSFT,                            KC_MS_BTN1,       KC_MS_BTN2
     ),
 
     //      x     x     x     boot       boot  x     x     x
-    // x    x     x     x     x          x     x     x     x     x
+    // x    x     x     BAS   MUS_T      x     x     x     x     x
     // PRS  x     x     x                      x     x     x     PRS
     //                  x     x          x     x
     [OPT_L] = LAYOUT_fj88_30(
-        XXXXXXX,          XXXXXXX,         XXXXXXX,          QK_BOOT,
-                                                                               QK_BOOT,          XXXXXXX,          XXXXXXX,          XXXXXXX,
-        XXXXXXX,          XXXXXXX,         XXXXXXX,          XXXXXXX,         XXXXXXX,          XXXXXXX,          XXXXXXX,          XXXXXXX,         XXXXXXX,          XXXXXXX,
-        XXXXXXX,          XXXXXXX,         XXXXXXX,          XXXXXXX,                           XXXXXXX,          XXXXXXX,          XXXXXXX,         XXXXXXX,
-                                            XXXXXXX,          XXXXXXX,                           XXXXXXX,          XXXXXXX
+                          XXXXXXX,         XXXXXXX,          XXXXXXX,         QK_BOOT,          QK_BOOT,          XXXXXXX,          XXXXXXX,         XXXXXXX,
+        XXXXXXX,          XXXXXXX,         XXXXXXX,          TO(BAS_L),       XXXXXXX,          XXXXXXX,          XXXXXXX,          XXXXXXX,         XXXXXXX,         XXXXXXX,
+        XXXXXXX,          XXXXXXX,         XXXXXXX,          XXXXXXX,                                             XXXXXXX,          XXXXXXX,         XXXXXXX,         XXXXXXX,
+                                           XXXXXXX,          XXXXXXX,                           XXXXXXX,          XXXXXXX
     ),
 };
 // clang-format on

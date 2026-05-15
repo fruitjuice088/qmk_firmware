@@ -34,6 +34,7 @@ CB(bspc,      KC_BSPC, KC_K,            KC_T)
 CB(esc,       KC_ESC,  KC_DOT,          KC_G)
 CB(m_esc,     CK_MESC, LALT_T(KC_V),   CK_MUHN_CTL)
 CB(enter,     KC_ENT,  RALT_T(KC_D),   CK_HENK_PAD)
+CB(mus_lock,  TG(MUS_L), L_MUS(Z),     L_MUS(B))
 
 // BAS_L: Vimマクロ
 CB(exit,      CK_EXIT, KC_E,            LGUI_T(KC_X))

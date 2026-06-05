@@ -30,12 +30,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     //      1     2     3     "          `     <     =     >
-    // 0    4/S   5/C   6/A   '/G        ←     ↓     ↑     →     :
+    // 0    4/S   5/C   6/A   '          ←     ↓     ↑     →     :
     // %    7     8     9                      HOME  END   {     }
     //                  BS/C  ___        PRS   DEL
     [PAD_L] = LAYOUT_fj88_30(
                           KC_1,             KC_2,            KC_3,           JP_DQUO,           JP_GRV,           JP_LABK,          JP_EQL,          JP_RABK,
-        KC_0,             LSFT_T(KC_4),    LCTL_T(KC_5),     LALT_T(KC_6),   CK_QUOT_GUI,   KC_LEFT,          KC_DOWN,          KC_UP,           KC_RGHT,         JP_COLN,
+        KC_0,             LSFT_T(KC_4),    LCTL_T(KC_5),     LALT_T(KC_6),   JP_QUOT,       KC_LEFT,          KC_DOWN,          KC_UP,           KC_RGHT,         JP_COLN,
         JP_PERC,          KC_7,            KC_8,             KC_9,                                                KC_HOME,          KC_END,          JP_LCBR,         JP_RCBR,
                                            LCTL_T(KC_BSPC),  _______,                           XXXXXXX,          KC_DEL
     ),
@@ -72,27 +72,84 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     return TAPPING_TERM;
 }
 
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LCTL_T(KC_BSPC):
+        case LSFT_T(KC_SPC):
+        case MT(ZMK_HYPR, KC_TAB):
+            return true;
+        default:
+            return false;
+    }
+}
+
+bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LGUI_T(KC_X):
+        case LALT_T(KC_V):
+        case RALT_T(KC_D):
+        case RGUI_T(KC_J):
+        case LSFT_T(KC_4):
+        case LCTL_T(KC_5):
+        case LALT_T(KC_6):
+        case LCTL_T(KC_BSPC):
+        case LSFT_T(KC_SPC):
+        case MT(ZMK_HYPR, KC_TAB):
+            return true;
+        default:
+            return false;
+    }
+}
+
 
 // ─────────────────────────────────────────────────────────────────
 // Custom keycode processing
 // ─────────────────────────────────────────────────────────────────
 static uint16_t muhn_timer = 0;
 static uint16_t henk_timer = 0;
-static uint16_t quot_gui_timer = 0;
+static uint8_t  muhn_nested_keys = 0;
+static bool     muhn_ctrl_registered = false;
+static bool     muhn_hold_used = false;
+static bool     muhn_unregister_pending = false;
+
+static void unregister_muhn_ctrl(void) {
+    unregister_code(KC_LCTL);
+    muhn_ctrl_registered = false;
+    muhn_unregister_pending = false;
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (keycode != CK_MUHN_CTL && muhn_ctrl_registered) {
+        if (record->event.pressed) {
+            muhn_hold_used = true;
+            if (muhn_nested_keys < 255) {
+                muhn_nested_keys++;
+            }
+        } else if (muhn_nested_keys > 0) {
+            muhn_nested_keys--;
+        }
+    }
+
     switch (keycode) {
 
         // hold: LCTRL  /  tap: 無変換 (INT5+LNG2)
         case CK_MUHN_CTL:
             if (record->event.pressed) {
                 muhn_timer = timer_read();
+                muhn_nested_keys = 0;
+                muhn_hold_used = false;
+                muhn_unregister_pending = false;
                 register_code(KC_LCTL);
+                muhn_ctrl_registered = true;
             } else {
-                unregister_code(KC_LCTL);
-                if (timer_elapsed(muhn_timer) < TAPPING_TERM) {
+                if (!muhn_hold_used && timer_elapsed(muhn_timer) < TAPPING_TERM) {
+                    unregister_muhn_ctrl();
                     tap_code(KC_INT5);
                     tap_code(KC_LNG2);
+                } else if (muhn_nested_keys > 0) {
+                    muhn_unregister_pending = true;
+                } else {
+                    unregister_muhn_ctrl();
                 }
             }
             return false;
@@ -123,20 +180,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         // "exit" 文字列送信
         case CK_EXIT:
             if (record->event.pressed) {
+                tap_code(KC_INT5);
+                tap_code(KC_LNG2);
                 SEND_STRING("exit");
-            }
-            return false;
-
-        // hold: LGUI  /  tap: JP_QUOT (S(KC_7))
-        case CK_QUOT_GUI:
-            if (record->event.pressed) {
-                quot_gui_timer = timer_read();
-                register_code(KC_LGUI);
-            } else {
-                unregister_code(KC_LGUI);
-                if (timer_elapsed(quot_gui_timer) < TAPPING_TERM) {
-                    tap_code16(JP_QUOT);
-                }
             }
             return false;
 
@@ -155,6 +201,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
     }
     return true;
+}
+
+void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (keycode != CK_MUHN_CTL && !record->event.pressed && muhn_unregister_pending && muhn_nested_keys == 0) {
+        unregister_muhn_ctrl();
+    }
 }
 
 // See: https://docs.qmk.fm/#/squeezing_avr?id=magic-functions

@@ -16,7 +16,6 @@ enum custom_keycodes {
     CK_MESC,                  // tap: 無変換+ESC
     CK_EXIT,                  // tap: "exit"
     CK_BSLH,                  // shift→INT1, else Alt(INT3)
-    CK_QUOT_GUI,              // hold: LGUI, tap: JP_QUOT (S(KC_7))
 };
 
 // ZMK HYPER = Ctrl+Shift+GUI (QMKの HYPR とは異なる)
